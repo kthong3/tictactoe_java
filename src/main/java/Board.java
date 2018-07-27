@@ -20,37 +20,9 @@ public class Board {
     }
 
     public void display(){
-        String row1 = "";
-        String row2 = "";
-        String row3 = "";
-        for (int i = 0; i < 9; i++) {
-            if (i > 5){
-                if (i == 8){
-                    row3 += locations[i];
-                }
-                else
-                    row3 += locations[i] + " | ";
-            }
-
-            if (i > 2 && i < 6){
-                if (i == 5){
-                    row2 += locations[i];
-                }
-                else
-                    row2 += locations[i] + " | ";
-            }
-
-
-            if (i >= 0 && i < 3){
-                if (i == 2){
-                    row1 += locations[i];
-                }
-                else
-                    row1 += locations[i] + " | ";
-            }
-
-
-        }
+        String row1 = String.format("%s | %s | %s", locations[0], locations[1], locations[2]);
+        String row2 = String.format("%s | %s | %s", locations[3], locations[4], locations[5]);
+        String row3 = String.format("%s | %s | %s", locations[6], locations[7], locations[8]);
 
         System.out.println(row1);
         System.out.println("---------");
