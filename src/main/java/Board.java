@@ -38,7 +38,19 @@ public class Board {
     }
 
     public boolean determineWinner(Player player){
-        return checkForUniqueChars(locations[0], locations[1], locations[2]) == player.symbol() || checkForUniqueChars(locations[3], locations[4], locations[5]) == player.symbol() || checkForUniqueChars(locations[6], locations[7], locations[8]) == player.symbol() || checkForUniqueChars(locations[0], locations[3], locations[6]) == player.symbol() || checkForUniqueChars(locations[1], locations[4], locations[7]) == player.symbol() || checkForUniqueChars(locations[2], locations[5], locations[8]) == player.symbol();
+        return horizontalWinningSets(player) || verticalWinningSets(player) || diagonalWinningSets(player);
+    }
+
+    private boolean horizontalWinningSets(Player player){
+        return checkForUniqueChars(locations[0], locations[1], locations[2]) == player.symbol() || checkForUniqueChars(locations[3], locations[4], locations[5]) == player.symbol() || checkForUniqueChars(locations[6], locations[7], locations[8]) == player.symbol();
+    }
+
+    private boolean verticalWinningSets(Player player){
+        return checkForUniqueChars(locations[0], locations[3], locations[6]) == player.symbol() || checkForUniqueChars(locations[1], locations[4], locations[7]) == player.symbol() || checkForUniqueChars(locations[2], locations[5], locations[8]) == player.symbol();
+    }
+
+    private boolean diagonalWinningSets(Player player){
+        return checkForUniqueChars(locations[0], locations[4], locations[8]) == player.symbol() || checkForUniqueChars(locations[2], locations[4], locations[6]) == player.symbol();
     }
 
     private String checkForUniqueChars(String location1, String location2, String location3){
