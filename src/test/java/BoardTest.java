@@ -38,4 +38,29 @@ public class BoardTest {
 
         assertTrue(board.determineWinner(playerOne));
     }
+
+    @Test
+    public void determineWinner_shouldReturnTrueWhenBoardFindsWinningSetInFirstColumn() {
+        String[] xInFirstColumn = new String[]{"X", "1", "2", "X", "4", "5", "X", "7", "8"};
+        board.setLocations(xInFirstColumn);
+
+        assertTrue(board.determineWinner(playerOne));
+    }
+
+    @Test
+    public void determineWinner_shouldReturnTrueWhenBoardFindsWinningSetInMiddleColumn() {
+        String[] xInMiddleColumn = new String[]{"0", "X", "2", "3", "X", "5", "6", "X", "8"};
+        board.setLocations(xInMiddleColumn);
+
+        assertTrue(board.determineWinner(playerOne));
+    }
+
+    @Test
+    public void determineWinner_shouldReturnTrueWhenBoardFindsWinningSetInLastColumn() {
+        String[] xInLastColumn = new String[]{"0", "1", "X", "3", "4", "X", "6", "7", "X"};
+        board.setLocations(xInLastColumn);
+
+        assertTrue(board.determineWinner(playerOne));
+    }
+
 }
