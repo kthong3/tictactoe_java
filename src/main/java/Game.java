@@ -5,7 +5,8 @@ public class Game {
         this.board = board;
     }
 
-    public void start(){
+    public void start(Player[] players){
         board.display();
+
     }
 }
