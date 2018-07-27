@@ -1,22 +1,28 @@
-public class Board {
-    private String[] locations;
+import java.util.HashSet;
+import java.util.Set;
 
-    public Board(){
-        this.locations = generateEmptyBoard();
+public class Board {
+    {
+        generateEmptyBoard();
     }
 
-    public String[] getLocations(){
+    private String[] locations;
+
+    public String[] locations(){
         return locations;
     }
 
-    private String[] generateEmptyBoard(){
-        String[] boardLocations = new String[9];
+    public void setLocations(String[] locations){
+        this.locations = locations;
+    }
 
+    private void generateEmptyBoard(){
+        String[] boardLocations = new String[9];
         for (int i = 0; i < 9; i++) {
             String numberAsString = Integer.toString(i);
             boardLocations[i] = numberAsString;
         }
-        return boardLocations;
+        setLocations(boardLocations);
     }
 
     public void display(){
@@ -29,5 +35,25 @@ public class Board {
         System.out.println(row2);
         System.out.println("---------");
         System.out.println(row3);
+    }
+
+    public boolean determineWinner(Player player){
+        return checkForUniqueChars(locations[0], locations[1], locations[2]) == player.symbol() || checkForUniqueChars(locations[3], locations[4], locations[5]) == player.symbol() || checkForUniqueChars(locations[6], locations[7], locations[8]) == player.symbol();
+    }
+
+    private String checkForUniqueChars(String location1, String location2, String location3){
+        String[] boardLocations = new String[] {location1, location2, location3};
+        Set set = new HashSet();
+        String result = "";
+
+        for (String boardLocation : boardLocations) {
+            if (!set.add(boardLocation)) {
+                result = boardLocation;
+            }
+            else {
+                result = "false";
+            }
+        }
+        return result;
     }
 }

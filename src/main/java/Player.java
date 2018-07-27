@@ -1,8 +1,9 @@
 public class Player {
-    String symbol;
+    private String symbol;
 
     public Player(String symbol){
         this.symbol = symbol;
-
     }
+
+    public String symbol(){ return symbol;}
 }
