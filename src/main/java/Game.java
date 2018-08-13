@@ -7,6 +7,5 @@ public class Game {
 
     public void start(Player[] players){
         board.display();
-
     }
 }
