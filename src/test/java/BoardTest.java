@@ -15,8 +15,8 @@ public class BoardTest {
     @Before
     public void setUp(){
         board = new Board();
-        playerOne = new Player("X");
-        playerTwo = new Player("O");
+        playerOne = new Player("1", "X");
+        playerTwo = new Player("2", "O");
     }
 
     @Test
@@ -25,10 +25,10 @@ public class BoardTest {
         int randomNumZeroToEight = rand.nextInt((8 - 0) + 1) + 0;
         String chosenLocation = Integer.toString(randomNumZeroToEight);
 
-        board.markLocation(chosenLocation, playerOne);
+        board.markLocation(chosenLocation, playerTwo);
         String[] boardLocations = board.locations();
         List board = Arrays.asList(boardLocations);
 
-        assertTrue(board.contains(playerOne.symbol()));
+        assertTrue(board.contains(playerTwo.symbol()));
     }
 }

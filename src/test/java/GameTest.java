@@ -11,8 +11,8 @@ public class GameTest {
     @Before
     public void setUp(){
         board = new Board();
-        playerOne = new Player("X");
-        playerTwo = new Player("O");
+        playerOne = new Player("1", "X");
+        playerTwo = new Player("2", "O");
         game = new Game(board);
     }
 }

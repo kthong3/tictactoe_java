@@ -35,6 +35,7 @@ public class Board {
         System.out.println(row2);
         System.out.println("---------");
         System.out.println(row3);
+        System.out.println();
     }
 
     public void markLocation(String chosenLocation, Player player){
