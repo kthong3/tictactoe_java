@@ -12,7 +12,7 @@ public class Board {
         return locations;
     }
 
-    public void setLocations(String[] locations){
+    private void setLocations(String[] locations){
         this.locations = locations;
     }
 
@@ -35,5 +35,10 @@ public class Board {
         System.out.println(row2);
         System.out.println("---------");
         System.out.println(row3);
+    }
+
+    public void markLocation(String chosenLocation, Player player){
+        int spot = Integer.parseInt(chosenLocation);
+        locations[spot] = player.symbol();
     }
 }
