@@ -26,6 +26,7 @@ public class Game {
     private String[] turn(Player[] players){
         for (Player player: players) {
             String chosenLocation = askForLocation(player.number());
+            board.locationAlreadyTaken(chosenLocation);
             board.markLocation(chosenLocation, player);
             board.display();
         }

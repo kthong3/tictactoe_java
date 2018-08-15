@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Board {
@@ -41,5 +43,10 @@ public class Board {
     public void markLocation(String chosenLocation, Player player){
         int spot = Integer.parseInt(chosenLocation);
         locations[spot] = player.symbol();
+    }
+
+    public boolean locationAlreadyTaken(String chosenLocation){
+        int spot = Integer.parseInt(chosenLocation);
+        return !locations[spot].contains(chosenLocation);
     }
 }
