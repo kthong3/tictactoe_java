@@ -91,4 +91,13 @@ public class BoardTest {
         assertTrue(board.determineWinner(playerOne));
         assertFalse(board.determineWinner(playerTwo));
     }
+
+    @Test
+    public void determineWinner_shouldReturnFalseWhenThereAreNoWinningCombo() {
+        String[] noWinningCombo = new String[]{"X", "O", "X", "O", "X", "O", "O", "X", "O"};
+        board.setLocations(noWinningCombo);
+
+        assertFalse(board.determineWinner(playerOne));
+        assertFalse(board.determineWinner(playerTwo));
+    }
 }
