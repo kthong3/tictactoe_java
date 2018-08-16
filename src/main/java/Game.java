@@ -12,7 +12,12 @@ public class Game {
     public void start(Player[] players){
         System.out.println("Starting tic tac toe game..");
         board.display();
-        turn(players);
+        while(!board.isFilled()){
+            turn(players);
+        }
+        if (board.isFilled()){
+            System.out.println("it's a draw!");
+        }
     }
 
     private String askForLocation(String playerNumber){
@@ -23,7 +28,7 @@ public class Game {
         return spot;
     }
 
-    private String[] turn(Player[] players){
+    private void turn(Player[] players){
         for (Player player: players) {
             String chosenLocation = askForLocation(player.number());
 
@@ -31,10 +36,9 @@ public class Game {
                 System.out.println("Sorry, that spot was already taken.");
                 chosenLocation = askForLocation(player.number());
             }
-
             board.markLocation(chosenLocation, player);
             board.display();
+            if (board.isFilled()){return;}
         }
-        return board.locations();
     }
 }
