@@ -12,12 +12,16 @@ public class Game {
     public void start(Player[] players){
         System.out.println("Starting tic tac toe game..");
         board.display();
-        while(!board.isFilled()){
-            turn(players);
+
+        while(!isOver(players)){
+            for (Player player: players) {
+                turn(player);
+                if(isOver(players)){
+                    break;
+                }
+            }
         }
-        if (board.isFilled()){
-            System.out.println("it's a draw!");
-        }
+        System.out.println(results(players));
     }
 
     private String askForLocation(String playerNumber){
@@ -28,17 +32,30 @@ public class Game {
         return spot;
     }
 
-    private void turn(Player[] players){
-        for (Player player: players) {
-            String chosenLocation = askForLocation(player.number());
+    private void turn(Player player){
+        String chosenLocation = askForLocation(player.number());
 
-            while (board.locationAlreadyTaken(chosenLocation)){
-                System.out.println("Sorry, that spot was already taken.");
-                chosenLocation = askForLocation(player.number());
-            }
-            board.markLocation(chosenLocation, player);
-            board.display();
-            if (board.isFilled()){return;}
+        while (board.locationAlreadyTaken(chosenLocation)){
+            System.out.println("Sorry, that spot was already taken.");
+            chosenLocation = askForLocation(player.number());
         }
+
+        board.markLocation(chosenLocation, player);
+        board.display();
+    }
+
+    private boolean isOver(Player[] players){
+        return board.determineWinner(players[0]) || board.determineWinner(players[1]) || board.isFilled();
+    }
+
+    public String results(Player[] players){
+        if (board.determineWinner(players[0])){
+            return String.format("Player %s wins!", players[0].number());
+
+        }
+        else if (board.determineWinner(players[1])){
+            return String.format("Player %s wins!", players[1].number());
+        }
+        else return "It's a draw!";
     }
 }
