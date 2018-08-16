@@ -33,7 +33,7 @@ public class BoardTest {
     }
 
     @Test
-    public void locationAlreadyTaken_shouldReturnTrueIfSpotHasBeenMarked(){
+    public void locationAlreadyTaken_shouldReturnTrueWhenSpotHasBeenMarked(){
         Random rand = new Random();
         int randomNumZeroToEight = rand.nextInt((8 - 0) + 1) + 0;
         String chosenLocation = Integer.toString(randomNumZeroToEight);
@@ -43,14 +43,14 @@ public class BoardTest {
     }
 
     @Test
-    public void locationAlreadyTaken_shouldReturnFalseIfSpotHasNotBeenMarkedYet(){
+    public void locationAlreadyTaken_shouldReturnFalseWhenSpotHasNotBeenMarkedYet(){
         board.markLocation("1", playerOne);
 
         assertFalse(board.locationAlreadyTaken("2"));
     }
 
     @Test
-    public void isFilled_returnsTrueWhenAllSpotsHaveBeenTaken(){
+    public void isFilled_shouldReturnTrueWhenAllSpotsHaveBeenTaken(){
         String[] boardLocations = new String[]{"X", "O", "X", "O", "X", "O", "O", "X", "O"};
         board.setLocations(boardLocations);
 
@@ -58,7 +58,7 @@ public class BoardTest {
     }
 
     @Test
-    public void isFilled_returnsFalseWhenNotAllSpotsHaveBeenTaken(){
+    public void isFilled_shouldReturnFalseWhenNotAllSpotsHaveBeenTaken(){
         String[] boardLocations = new String[]{"X", "O", "X", "O", "X", "O", "O", "X", "8"};
         board.setLocations(boardLocations);
 
@@ -69,6 +69,15 @@ public class BoardTest {
     public void determineWinner_shouldReturnTrueWhenBoardFindsWinningSetInFirstRow() {
         String[] xInFirstRow = new String[]{"X", "X", "X", "3", "4", "5", "6", "7", "8"};
         board.setLocations(xInFirstRow);
+
+        assertTrue(board.determineWinner(playerOne));
+        assertFalse(board.determineWinner(playerTwo));
+    }
+
+    @Test
+    public void determineWinner_shouldReturnTrueWhenBoardFindsWinningSetInMiddleRow() {
+        String[] xInMiddleRow = new String[]{"0", "O", "2", "X", "X", "X", "O", "7", "8"};
+        board.setLocations(xInMiddleRow);
 
         assertTrue(board.determineWinner(playerOne));
         assertFalse(board.determineWinner(playerTwo));
