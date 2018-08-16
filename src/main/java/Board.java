@@ -52,7 +52,22 @@ public class Board {
         String[] originalBoard = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8"};
         List originalBoardList = Arrays.asList(originalBoard);
 
-        // if current board contains any number strings
         return Collections.disjoint(currentBoard, originalBoardList);
+    }
+
+    public boolean determineWinner(Player player){
+        return checkForUniqueChars(locations[0], locations[1], locations[2]) == player.symbol();
+    }
+
+    private String checkForUniqueChars(String spot1, String spot2, String spot3){
+        String[] firstRow = new String[] {spot1, spot2, spot3};
+        Set set = new HashSet();
+        for (String spot : firstRow) {
+            set.add(spot);
+        }
+        if (set.size() == 1){
+            return spot1;
+        }
+        else return "spots are different";
     }
 }

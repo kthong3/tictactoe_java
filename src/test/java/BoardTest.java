@@ -64,4 +64,13 @@ public class BoardTest {
 
         assertFalse(board.isFilled());
     }
+
+    @Test
+    public void determineWinner_shouldReturnTrueWhenBoardFindsWinningSetInFirstRow() {
+        String[] xInFirstRow = new String[]{"X", "X", "X", "3", "4", "5", "6", "7", "8"};
+        board.setLocations(xInFirstRow);
+
+        assertTrue(board.determineWinner(playerOne));
+        assertFalse(board.determineWinner(playerTwo));
+    }
 }
