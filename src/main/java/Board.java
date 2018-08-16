@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Board {
     {
@@ -14,7 +11,7 @@ public class Board {
         return locations;
     }
 
-    private void setLocations(String[] locations){
+    public void setLocations(String[] locations){
         this.locations = locations;
     }
 
@@ -48,5 +45,14 @@ public class Board {
     public boolean locationAlreadyTaken(String chosenLocation){
         int spot = Integer.parseInt(chosenLocation);
         return !locations[spot].contains(chosenLocation);
+    }
+
+    public boolean isFilled(){
+        List currentBoard = Arrays.asList(locations());
+        String[] originalBoard = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8"};
+        List originalBoardList = Arrays.asList(originalBoard);
+
+        // if current board contains any number strings
+        return Collections.disjoint(currentBoard, originalBoardList);
     }
 }

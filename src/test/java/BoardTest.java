@@ -48,4 +48,20 @@ public class BoardTest {
 
         assertFalse(board.locationAlreadyTaken("2"));
     }
+
+    @Test
+    public void isFilled_returnsTrueWhenAllSpotsHaveBeenTaken(){
+        String[] boardLocations = new String[]{"X", "O", "X", "O", "X", "O", "O", "X", "O"};
+        board.setLocations(boardLocations);
+
+        assertTrue(board.isFilled());
+    }
+
+    @Test
+    public void isFilled_returnsFalseWhenNotAllSpotsHaveBeenTaken(){
+        String[] boardLocations = new String[]{"X", "O", "X", "O", "X", "O", "O", "X", "8"};
+        board.setLocations(boardLocations);
+
+        assertFalse(board.isFilled());
+    }
 }
