@@ -26,7 +26,12 @@ public class Game {
     private String[] turn(Player[] players){
         for (Player player: players) {
             String chosenLocation = askForLocation(player.number());
-            board.locationAlreadyTaken(chosenLocation);
+
+            while (board.locationAlreadyTaken(chosenLocation)){
+                System.out.println("Sorry, that spot was already taken.");
+                chosenLocation = askForLocation(player.number());
+            }
+
             board.markLocation(chosenLocation, player);
             board.display();
         }
