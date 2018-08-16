@@ -56,7 +56,7 @@ public class Board {
     }
 
     public boolean determineWinner(Player player){
-        return (checkForUniqueChars(locations[0], locations[1], locations[2]) == player.symbol()) || (checkForUniqueChars(locations[3], locations[4], locations[5]) == player.symbol());
+        return (checkForUniqueChars(locations[0], locations[1], locations[2]) == player.symbol()) || (checkForUniqueChars(locations[3], locations[4], locations[5]) == player.symbol()) || (checkForUniqueChars(locations[6], locations[7], locations[8]) == player.symbol());
     }
 
     private String checkForUniqueChars(String spot1, String spot2, String spot3){
