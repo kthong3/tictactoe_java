@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Board {
     {
@@ -35,25 +34,48 @@ public class Board {
         System.out.println(row2);
         System.out.println("---------");
         System.out.println(row3);
+        System.out.println();
+    }
+
+    public void markLocation(String chosenLocation, Player player){
+        int spot = Integer.parseInt(chosenLocation);
+        locations[spot] = player.symbol();
+    }
+
+    public boolean locationAlreadyTaken(String chosenLocation){
+        int spot = Integer.parseInt(chosenLocation);
+        return !locations[spot].contains(chosenLocation);
+    }
+
+    public boolean isFilled(){
+        List currentBoard = Arrays.asList(locations());
+        String[] originalBoard = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8"};
+        List originalBoardList = Arrays.asList(originalBoard);
+
+        return Collections.disjoint(currentBoard, originalBoardList);
     }
 
     public boolean determineWinner(Player player){
-        return checkForUniqueChars(locations[0], locations[1], locations[2]) == player.symbol() || checkForUniqueChars(locations[3], locations[4], locations[5]) == player.symbol() || checkForUniqueChars(locations[6], locations[7], locations[8]) == player.symbol() || checkForUniqueChars(locations[0], locations[3], locations[6]) == player.symbol() || checkForUniqueChars(locations[1], locations[4], locations[7]) == player.symbol() || checkForUniqueChars(locations[2], locations[5], locations[8]) == player.symbol();
+        return foundWinningSetInRows(player) || foundWinningSetInColumns(player);
     }
 
-    private String checkForUniqueChars(String location1, String location2, String location3){
-        String[] boardLocations = new String[] {location1, location2, location3};
+    private String checkForUniqueChars(String spot1, String spot2, String spot3){
+        String[] firstRow = new String[] {spot1, spot2, spot3};
         Set set = new HashSet();
-        String result = "";
-
-        for (String boardLocation : boardLocations) {
-            if (!set.add(boardLocation)) {
-                result = boardLocation;
-            }
-            else {
-                result = "false";
-            }
+        for (String spot : firstRow) {
+            set.add(spot);
         }
-        return result;
+        if (set.size() == 1){
+            return spot1;
+        }
+        else return "spots are different";
+    }
+
+    private boolean foundWinningSetInRows(Player player){
+        return (checkForUniqueChars(locations[0], locations[1], locations[2]) == player.symbol()) || (checkForUniqueChars(locations[3], locations[4], locations[5]) == player.symbol()) || (checkForUniqueChars(locations[6], locations[7], locations[8]) == player.symbol());
+    }
+
+    private boolean foundWinningSetInColumns(Player player){
+        return checkForUniqueChars(locations[0], locations[1], locations[2]) == player.symbol() || checkForUniqueChars(locations[3], locations[4], locations[5]) == player.symbol() || checkForUniqueChars(locations[6], locations[7], locations[8]) == player.symbol() || checkForUniqueChars(locations[0], locations[3], locations[6]) == player.symbol() || checkForUniqueChars(locations[1], locations[4], locations[7]) == player.symbol() || checkForUniqueChars(locations[2], locations[5], locations[8]) == player.symbol();
     }
 }
