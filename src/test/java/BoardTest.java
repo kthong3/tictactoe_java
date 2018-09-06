@@ -127,4 +127,23 @@ public class BoardTest {
         assertTrue(board.determineWinner(playerOne));
         assertFalse(board.determineWinner(playerTwo));
     }
+
+    @Test
+    public void determineWinner_shouldReturnTrueWhenBoardFindsWinningSetDiagonallyLeftTopToRightBottom() {
+        String[] xLTopToRBottom = new String[]{"X", "O", "O", "3", "X", "5", "O", "7", "X"};
+        board.setLocations(xLTopToRBottom);
+
+        assertTrue(board.determineWinner(playerOne));
+        assertFalse(board.determineWinner(playerTwo));
+    }
+
+    @Test
+    public void determineWinner_shouldReturnTrueWhenBoardFindsWinningSetDiagonallyLeftBottomToRightTop() {
+        String[] xLBottomToRTop = new String[]{"O", "1", "X", "O", "X", "O", "X", "7", "O"};
+        board.setLocations(xLBottomToRTop);
+
+        assertTrue(board.determineWinner(playerOne));
+        assertFalse(board.determineWinner(playerTwo));
+    }
+
 }
