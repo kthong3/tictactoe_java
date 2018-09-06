@@ -56,7 +56,7 @@ public class Board {
     }
 
     public boolean determineWinner(Player player){
-        return foundWinningSetInRows(player) || foundWinningSetInColumns(player);
+        return foundWinningSetInRows(player) || foundWinningSetInColumns(player) || (checkForUniqueChars(locations[0], locations[4], locations[8]) == player.symbol()) || (checkForUniqueChars(locations[2], locations[4], locations[6]) == player.symbol());
     }
 
     private String checkForUniqueChars(String spot1, String spot2, String spot3){
